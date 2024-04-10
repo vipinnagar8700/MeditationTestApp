@@ -76,9 +76,7 @@ const DepressionTestScreen = ({ route }) => {
       </View>
       <View style={{ margin: 20, backgroundColor: Colors.SECONDARY, flexDirection: 'row', justifyContent: 'space-between', padding: 20, position: 'absolute', top: 250, borderRadius: 10 }}>
         <Text style={{ fontFamily: 'appfont-light', color: Colors.WHITE }}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo nulla assumenda ipsum sunt quidem veniam possimus quas doloremque quod ducimus provident tempore fuga quis iure et quae sint, laborum praesentium?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ea unde facilis exercitationem nobis, possimus necessitatibus repellat id consequatur dicta nostrum sapiente aliquam illo ad laboriosam, nam velit quam soluta.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto, assumenda dicta? Autem eaque, aperiam eveniet, adipisci, magni quos dolore nesciunt hic placeat similique doloribus tenetur mollitia corrupti id? Excepturi, voluptas.
+        {testData?.description}
         </Text>
 
       </View>
@@ -92,10 +90,10 @@ const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:Colors.SECONDARY
   },
   buttonContainer: {
     alignItems: 'center',
-
   },
   buttonText: {
     fontFamily: 'appfont-light',
@@ -115,8 +113,6 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: width,
-    height: 380, // Adjust height as needed
-    backgroundColor: Colors.PRIMARY
   },
   menuIconContainer: {
     padding: 10,
@@ -124,7 +120,7 @@ const styles = StyleSheet.create({
   }, menuIconContainera: {
     position: 'absolute',
     top: 50,
-    left: 15,
+    left: 10,
     padding: 3,
     borderRadius: 20, backgroundColor: Colors.WHITE
   },

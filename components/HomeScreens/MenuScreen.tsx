@@ -17,7 +17,7 @@ const MenuScreen = () => {
     { id: '4', title: 'Calendar', screen: 'Calender' },
     { id: '5', title: 'Feedback', screen: 'Feedback' },
     { id: '6', title: 'About our project', screen: 'About' },
-    { id: '7', title: 'Settings', screen: 'Setting' },
+    { id: '7', title: 'Settings', screen: 'MYTest' },
     { id: '8', title: 'Go out', screen: 'Logout' },
   ];
 
@@ -93,14 +93,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   userContainer: {
-    alignItems: 'center',
+    alignItems: 'start',
     marginBottom: 20,
-    width: '100%', backgroundColor: Colors.PRIMARY, padding: 20
+    width: '100%', backgroundColor: "#D3F896", padding: 20
   },
   userImage: {
     width: 100,
     height: 100,
-    borderRadius: 50, borderWidth: 2, borderColor: Colors.WHITE
+    borderRadius: 50, 
   },
   menuItem: {
     paddingHorizontal: 20,
@@ -113,12 +113,12 @@ const styles = StyleSheet.create({
   menuTexta: {
     fontSize: 18,
     fontFamily: 'appfont-medium',
-    marginTop: 10, color: Colors.WHITE
+    marginTop: 10, color: Colors.BLACK
   },
   menuTextaa: {
     fontSize: 10,
     fontFamily: 'appfont-light',
-    color: Colors.WHITE
+    color: Colors.BLACK
   },
 });
 

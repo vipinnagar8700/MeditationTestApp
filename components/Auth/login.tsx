@@ -45,11 +45,12 @@ const Login = () => {
         <Text style={styles.headerText}>mindtrack</Text>
         <Image source={require('../../assets/World.png')} style={{ width: 30, height: 30 }} />
       </View>
-      <Text style={styles.headerTexta}>Login</Text>
       <View style={styles.formContainer}>
+      <Text style={styles.headerTexta}>Войти</Text>
+
         <TextInput
           style={styles.input}
-          placeholder="Email"
+          placeholder="e-mail"
           keyboardType="email-address"
           placeholderTextColor={Colors.WHITE}
           value={email}
@@ -57,7 +58,7 @@ const Login = () => {
         />
         <TextInput
           style={styles.inputa}
-          placeholder="Password"
+          placeholder="Пароль"
           secureTextEntry={true}
           placeholderTextColor={Colors.WHITE}
           value={password}
@@ -66,15 +67,15 @@ const Login = () => {
         <View style={{ alignItems: 'flex-end', justifyContent: 'flex-end', flexDirection: 'row' }}>
           <Text style={{ fontFamily: 'appfont-light', marginTop: 0, color: Colors.WHITE, padding: 0 }}> </Text>
           <Text style={{ fontFamily: 'appfont-light', marginTop: 0, color: Colors.WHITE, padding: 0 }}></Text>
-          <Text style={{ fontFamily: 'appfont-light', marginTop: 0, color: Colors.WHITE, padding: 0 ,fontSize:11}}>Forgot Password </Text>
+          <Text style={{ fontFamily: 'appfont-light', marginTop: 0, color: Colors.WHITE, padding: 0 ,fontSize:11}}>забыли свой пароль? </Text>
         </View>
         <TouchableOpacity style={styles.button} onPress={HandleHome}>
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>Войти</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={Registeration}>
-          <Text style={{ fontFamily: 'appfont-light', marginTop: 10, color: Colors.WHITE ,fontSize:11 }}>Registeration</Text>
+          <Text style={{ fontFamily: 'appfont-light', marginTop: 10, color: Colors.WHITE ,fontSize:11 }}>рЕГИСТРАЦИЯ</Text>
         </TouchableOpacity>
-        <Text style={{ fontFamily: 'appfont-light', marginTop: 15, textAlign: 'center', color: Colors.WHITE }}>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</Text>
+        <Text style={{ fontFamily: 'appfont-light', marginTop: 15, textAlign: 'center', color: Colors.WHITE }}>Авторизуясь, вы соглашаетесь с пользовательским соглашением и даете согласие на обработку персональных данных </Text>
       </View>
 
 
@@ -96,7 +97,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#fff',
   },
   headerContainer: {
     backgroundColor: Colors.PRIMARY, width: '100%', padding: 5, flexDirection: 'row', justifyContent: 'center', gap: 10
@@ -104,48 +104,48 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 24,
     fontFamily: 'appfont-light',
-    textAlign: 'center', color: Colors.WHITE
+    textAlign: 'center', color: Colors.BLACK
   },
   headerTexta: {
     fontSize: 24,
     fontFamily: 'appfont-light',
-    textAlign: 'center', color: Colors.PRIMARY, marginTop: 70
+    textAlign: 'center', color: Colors.BLACK, margin: 10
   },
   formContainer: {
-    marginTop: 20,
+    marginTop: 70,
     alignItems: 'center',
-    width: '80%', paddingTop: 40,
-    backgroundColor: Colors.SECONDARY, borderRadius: 10, paddingBottom: 70, paddingHorizontal: 20
+    width: '80%', paddingTop: 10,
+    backgroundColor: Colors.PRIMARY, borderRadius: 10, paddingBottom: 30, paddingHorizontal: 20
   },
   input: {
     height: 40,
     borderWidth: 1,
-    borderColor: Colors.PRIMARY,
+    borderColor: "#8FB2C1",
     borderRadius: 5,
     marginBottom: 20,
     paddingHorizontal: 10,
     width: '100%',
-    backgroundColor: Colors.PRIMARY, fontFamily: 'appfont-light', textAlign: 'center'
+    backgroundColor: "#8FB2C1",fontFamily: 'appfont-light', textAlign: 'center'
   },
   inputa: {
     height: 40,
     borderWidth: 1,
-    borderColor: Colors.PRIMARY,
+    borderColor: "#8FB2C1",
     borderRadius: 5,
     marginBottom: 2,
     paddingHorizontal: 10,
     width: '100%',
-    backgroundColor: Colors.PRIMARY, fontFamily: 'appfont-light', textAlign: 'center'
+    backgroundColor: "#8FB2C1", fontFamily: 'appfont-light', textAlign: 'center'
   },
   button: {
-    backgroundColor: Colors.BUTTON,
+    backgroundColor: Colors.SECONDARY,
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
     marginTop: 10
   },
   buttonText: {
-    color: Colors.BLACK,
+    color: Colors.WHITE,
     fontSize: 16,
     textAlign: 'center',
     fontFamily: 'appfont-medium'

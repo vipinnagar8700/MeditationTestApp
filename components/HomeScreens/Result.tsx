@@ -57,54 +57,41 @@ console.log(AB,"AB")
   return (
     <>
       <View style={styles.container}>
-            <View style={styles.imageContainer}>
               <TouchableOpacity style={styles.menuIconContainer} onPress={handleMenu}>
                 <Ionicons name="menu" size={24} color="white" />
               </TouchableOpacity>
               <TouchableOpacity style={styles.menuIconContainera} onPress={handleGoBack}>
                 <AntDesign name="arrowleft" size={24} color="black" />
               </TouchableOpacity>
+              <View style={{justifyContent:'center',alignItems:'center'}}>
               <Image
                 source={require("../../assets/user1.png")}
                 style={{
-                  position: "absolute",
-                  bottom: 21,
-                  left: 130,
-                  right: 0,
-                  alignItems: "center",
-                  width: 120,
-                  height: "100%",
                   resizeMode: "contain", // Adjust image size to fit container
                 }}
               />
+              </View>
+          
               <TouchableOpacity style={styles.buttonContainera}>
-                <Text style={styles.buttonTexta}>Your results</Text>
+                <Text style={styles.buttonTexta}>Ваши результаты</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContaineraa}>
                 <Text style={styles.buttonTextaa}>Correct  {userDataa?.correct_count}, Incorrect {userDataa?.incorrect_count}</Text>
               </TouchableOpacity>
-            </View>
         <View
           style={{
-            margin: 20,
-            backgroundColor: Colors.BUTTON,
+            marginHorizontal: 20,
             flexDirection: "row",
             justifyContent: "space-between",
-            padding: 15,
-            position: "absolute",
-            top: 180,
-            borderRadius: 10,width:'88%'
+            borderRadius: 10
           }}
         >
           <Text style={{ fontFamily: "appfont-light", color: Colors.WHITE }}>
-            High level of introversion: Your answers indicate that you have a
-            high level of introversion. You prefer to spend time alone or in
-            small groups, tend to think deeply, and prefer deep conversations
-            with a small circle of close people.
+          Глубокая депрессия. У вас могут периодически появляться галлюцинации, а временами посещать мысли о самоубийстве. Не исключено наличие психических расстройств. Данная стадия депрессии обязательно должна лечиться под присмотром специалистов, причем нередко в условиях стационара. Однако вот вам несколько советов:
           </Text>
         </View>
 
-        <View style={[styles.card,{marginTop:105}]}>
+        <View style={[styles.card]}>
           <Image
             source={require("../../assets/Man.png")}
             style={styles.image}
@@ -118,7 +105,7 @@ console.log(AB,"AB")
             </Text>
           </View>
         </View>
-        <View style={[styles.card, { backgroundColor: Colors.BUTTON }]}>
+        <View style={[styles.card]}>
           <Image
             source={require("../../assets/Man.png")}
             style={styles.image}
@@ -150,13 +137,13 @@ console.log(AB,"AB")
             padding: 10,
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: Colors.BUTTON,
+            backgroundColor: "#D8644BE3",
             margin: 20,
             borderRadius: 10,
           }}
         >
           <Text style={{ fontFamily: "appfont-medium", color: Colors.WHITE }}>
-            Save result
+          Сохранить результат
           </Text>
         </TouchableOpacity>
       </View>
@@ -168,31 +155,24 @@ const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1,backgroundColor:"#8FB1C7"
   },
   buttonContainera: {
-    top: 150,
-    left: 0,
-    right: 0,
     alignItems: "center",
   },
   buttonContaineraa: {
-    top: 124,
-    left: 0,
-    right: 0,
     alignItems: "center",
   },
   card: {
     marginHorizontal: 20,
     marginVertical: 5,
-    backgroundColor: Colors.SECONDARY,
     flexDirection: "row",
     justifyContent: "flex-start",
-    padding: 10,
+    padding:5,
     borderRadius: 10,
   },
   image: {
-    width: 60,
+    width: 80,
     resizeMode: "contain",
   },
   textContainer: {
@@ -211,18 +191,13 @@ const styles = StyleSheet.create({
     fontFamily: "appfont-light",
     fontSize: 16,
     color: "white",
-    padding: 10,
+    padding: 2,
   },
   buttonTextaa: {
     fontFamily: "appfont-light",
     fontSize: 16,
     color: "white",
-    padding: 10,
-  },
-  imageContainer: {
-    width: width,
-    height: 250, // Adjust height as needed
-    backgroundColor: Colors.PRIMARY,
+    padding: 2,
   },
   menuIconContainer: {
     position: "absolute",

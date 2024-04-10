@@ -1,7 +1,7 @@
 export default{
     WHITE:'#fff',
     BLACK:"#000",
-    PRIMARY:'#8A62E1',
-    SECONDARY:"#2DA8ED",
+    PRIMARY:'#D9D9D9',
+    SECONDARY:"#2EA7DB",
     BUTTON:'#31C059'
 }

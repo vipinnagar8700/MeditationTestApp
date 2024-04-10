@@ -1,9 +1,10 @@
-import { StyleSheet, StatusBar } from "react-native";
+// App.js
+import React from 'react';
+import { StatusBar } from 'react-native';
 import { useFonts } from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native'; // Import NavigationContainer
-import AppNavigator from "./components/Navigation/AppNavigator";
-import { AuthProvider } from "./components/Context/AuthContext";
-
+import { NavigationContainer } from '@react-navigation/native';
+import AppNavigator from './components/Navigation/AppNavigator';
+import { AuthProvider } from './components/Context/AuthContext';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -18,29 +19,16 @@ export default function App() {
     'appfont-thin': require('./assets/fonts/Inter-Thin.ttf'),
   });
 
-  // Render SplashScreen if fonts are not loaded or while checking user login status
   if (!fontsLoaded) {
-    return null; // or a loading indicator
+    return null; // Render nothing until fonts are loaded
   }
 
-  // Render different screens based on user login status
   return (
-    <>
-      <NavigationContainer >
-        <AuthProvider>
-          <StatusBar hidden />
-          <AppNavigator />
-        </AuthProvider>
-      </NavigationContainer >
-
-
-    </>
+    <NavigationContainer>
+      <AuthProvider>
+        <StatusBar hidden />
+        <AppNavigator />
+      </AuthProvider>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white', // Change this to your preferred background color
-  },
-});

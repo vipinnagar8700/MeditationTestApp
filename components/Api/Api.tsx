@@ -1,4 +1,4 @@
-import {  apiUrlAddTests, apiUrlGetResult, apiUrlLogin, apiUrlMe, apiUrlRegister, apiUrlTopic, apiUrlTopicTests,} from "./ApiUrl";
+import {  apiUrlAddTests, apiUrlGetMeditation, apiUrlGetMeditationPopular, apiUrlGetMeditationSingle, apiUrlGetResult, apiUrlLogin, apiUrlMe, apiUrlRegister, apiUrlTopic, apiUrlTopicTests,} from "./ApiUrl";
 
 // Login Api
 export const LoginApi = (email, password) => {
@@ -152,7 +152,55 @@ const requestOptions = {
   redirect: "follow"
 };
 
-return fetch(`${apiUrlGetResult}/${AB[0]?.topic_id}`, requestOptions)
+return fetch(`${apiUrlGetResult}`, requestOptions)
+  .then((response) => response.json())
+  .then((result) => {return result})
+  .catch((error) => {throw error});
+}
+// Get MEditation 
+// Get User Api i.e me Api
+export const GetMeditation =(token)=>{
+  const myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${token}`);
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+
+return fetch(`${apiUrlGetMeditation}`, requestOptions)
+  .then((response) => response.json())
+  .then((result) => {return result})
+  .catch((error) => {throw error});
+}
+export const GetMeditationPopular =(token)=>{
+  const myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${token}`);
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+
+return fetch(`${apiUrlGetMeditationPopular}`, requestOptions)
+  .then((response) => response.json())
+  .then((result) => {return result})
+  .catch((error) => {throw error});
+}
+// Get User Api i.e me Api
+export const GetMeditationSingle =(token,id)=>{
+  const myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${token}`);
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+
+return fetch(`${apiUrlGetMeditationSingle}/${id}`, requestOptions)
   .then((response) => response.json())
   .then((result) => {return result})
   .catch((error) => {throw error});
