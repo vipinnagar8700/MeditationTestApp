@@ -19,20 +19,19 @@ export default function App() {
   });
 
   // Render SplashScreen if fonts are not loaded or while checking user login status
-  if (!fontsLoaded ) {
+  if (!fontsLoaded) {
     return null; // or a loading indicator
   }
 
   // Render different screens based on user login status
   return (
     <>
-    <NavigationContainer >
-
-    <AuthProvider>
-      <StatusBar hidden />
-          <AppNavigator /> 
-    </AuthProvider>
-    </NavigationContainer >
+      <NavigationContainer >
+        <AuthProvider>
+          <StatusBar hidden />
+          <AppNavigator />
+        </AuthProvider>
+      </NavigationContainer >
 
 
     </>

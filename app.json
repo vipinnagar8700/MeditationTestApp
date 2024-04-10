@@ -21,10 +21,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.vipinnagar5206.education"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2a33e58d-6eda-42c9-9300-ce43b4c4b167"
+      }
+    },
+    "owner": "vipinnagar5206"
   }
 }

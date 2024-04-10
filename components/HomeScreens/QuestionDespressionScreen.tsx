@@ -6,9 +6,10 @@ import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 import { Fontisto } from '@expo/vector-icons';
 
-const QuestionDepressionScreen = () => {
+const QuestionDepressionScreen = ({route}) => {
   // Example image data
- 
+  const { userData } = route.params;
+  console.log(userData,"testDatatestDatatestDatatestData")
   const navigation = useNavigation(); // Get navigation object
 
   // Function to handle login navigation
@@ -18,13 +19,15 @@ const QuestionDepressionScreen = () => {
   const handleGoBack = () => {
       navigation.goBack();
     };
+
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
-    
-    navigation.navigate('QuestionDepressionSecond');
+    navigation.navigate('QuestionDepressionSecond',{userData:userData,option:option});
   };
+
+
 
   return (
     <>
@@ -68,64 +71,56 @@ const QuestionDepressionScreen = () => {
           }}
         >
           <Text style={{ fontFamily: "appfont-light", color: Colors.WHITE }}>
-          I like to spend time alone.
+         {userData[0]?.question}
           </Text>
         </View>
-        <TouchableOpacity
-          style={[styles.card, selectedOption === 'yes' && styles.selectedCard,{top:40}]}
-          onPress={() => handleOptionSelect('yes')}
-        >
-          <Fontisto name={selectedOption === 'yes' ? 'radio-btn-active' : 'radio-btn-passive'} size={24} color={Colors.WHITE}  style={{margin:10}}/>
-          <View style={styles.textContainer}>
-            <Text style={styles.description}>
-              Yes
-            </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.card, selectedOption === 'probablyYes' && styles.selectedCard,{top:40}]}
-          onPress={() => handleOptionSelect('probablyYes')}
-        >
-          <Fontisto name={selectedOption === 'probablyYes' ? 'radio-btn-active' : 'radio-btn-passive'} size={24} color={Colors.WHITE}  style={{margin:10}}/>
-          <View style={styles.textContainer}>
-            <Text style={styles.description}>
-              Probably Yes
-            </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.card, selectedOption === 'difficultToAnswer' && styles.selectedCard,{top:40}]}
-          onPress={() => handleOptionSelect('difficultToAnswer')}
-        >
-          <Fontisto name={selectedOption === 'difficultToAnswer' ? 'radio-btn-active' : 'radio-btn-passive'} size={24} color={Colors.WHITE}  style={{margin:10}}/>
-          <View style={styles.textContainer}>
-            <Text style={styles.description}>
-              Difficult to Answer
-            </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.card, selectedOption === 'mostLikelyNo' && styles.selectedCard,{top:40}]}
-          onPress={() => handleOptionSelect('mostLikelyNo')}
-        >
-          <Fontisto name={selectedOption === 'mostLikelyNo' ? 'radio-btn-active' : 'radio-btn-passive'} size={24} color={Colors.WHITE}  style={{margin:10}}/>
-          <View style={styles.textContainer}>
-            <Text style={styles.description}>
-              Most Likely No
-            </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.card, selectedOption === 'no' && styles.selectedCard,{top:40}]}
-          onPress={() => handleOptionSelect('no')}
-        >
-          <Fontisto name={selectedOption === 'no' ? 'radio-btn-active' : 'radio-btn-passive'} size={24} color={Colors.WHITE}  style={{margin:10}}/>
-          <View style={styles.textContainer}>
-            <Text style={styles.description}>
-              No
-            </Text>
-          </View>
-        </TouchableOpacity>
+      
+              <TouchableOpacity
+              style={[styles.card, selectedOption === userData[0]?.option1 && styles.selectedCard,{top:40}]}
+              onPress={() => handleOptionSelect("option1")}
+            >
+              <Fontisto name={selectedOption === userData[0]?.option1 ? 'radio-btn-active' : 'radio-btn-passive'} size={24} color={Colors.WHITE}  style={{margin:10}}/>
+              <View style={styles.textContainer}>
+                <Text style={styles.description}>
+              {userData[0]?.option1}
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.card, selectedOption === userData[0]?.option2 && styles.selectedCard,{top:40}]}
+              onPress={() => handleOptionSelect("option2")}
+            >
+              <Fontisto name={selectedOption === userData[0]?.option2 ? 'radio-btn-active' : 'radio-btn-passive'} size={24} color={Colors.WHITE}  style={{margin:10}}/>
+              <View style={styles.textContainer}>
+                <Text style={styles.description}>
+              {userData[0]?.option2}
+                </Text>
+              </View>
+            </TouchableOpacity>
+      
+            <TouchableOpacity
+              style={[styles.card, selectedOption === userData[0]?.option3 && styles.selectedCard,{top:40}]}
+              onPress={() => handleOptionSelect("option3")}
+            >
+              <Fontisto name={selectedOption === userData[0]?.option3 ? 'radio-btn-active' : 'radio-btn-passive'} size={24} color={Colors.WHITE}  style={{margin:10}}/>
+              <View style={styles.textContainer}>
+                <Text style={styles.description}>
+              {userData[0]?.option3}
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.card, selectedOption === userData[0]?.option4 && styles.selectedCard,{top:40}]}
+              onPress={() => handleOptionSelect("option4")}
+            >
+              <Fontisto name={selectedOption === userData[0]?.option4 ? 'radio-btn-active' : 'radio-btn-passive'} size={24} color={Colors.WHITE}  style={{margin:10}}/>
+              <View style={styles.textContainer}>
+                <Text style={styles.description}>
+              {userData[0]?.option4}
+                </Text>
+              </View>
+            </TouchableOpacity>
+            
       
       </View>
     </>

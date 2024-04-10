@@ -4,7 +4,7 @@ import {
   Text,
   StyleSheet,
   Image,
-  TouchableOpacity,
+  TouchableOpacity,Modal,Button,TextInput
 } from "react-native";
 import Colors from "../../Helper/Colors";
 import { Ionicons } from "@expo/vector-icons";
@@ -14,22 +14,36 @@ import AuthContext  from '../Context/AuthContext';
 const MYTest = () => {
   const navigation = useNavigation(); // Get navigation object
   const { userData } = useContext(AuthContext );
+  const [Users, setUser] = useState(null);
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [name, setName] = useState(userData?.name || '');
+  const [about, setabout] = useState(userData?.about_me || '');
+  const [description, setDescription] = useState(userData?.description || '');
   // Function to handle login navigation
   const handleMenu = () => {
     navigation.navigate("Menu"); // Navigate to the Login screen
   };
 
-  const [Users,setUser]= useState(null)
   useEffect(()=>{
-    console.log(userData,"userData121")
     setUser(userData)
 
   },[])
- 
+
+  const handleEditProfile = () => {
+    setEditModalVisible(true);
+  };
+
+  const handleSaveProfile = () => {
+    // Handle saving the edited profile here, e.g., calling an API
+    console.log("Saving profile...");
+    setEditModalVisible(false);
+  };
+
   // Function to handle login navigation
   const handleComplete = () => {
     navigation.navigate("Setting"); // Navigate to the Login screen
   };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.menuIconContainer} onPress={handleMenu}>
@@ -42,7 +56,7 @@ const MYTest = () => {
           style={styles.userImage}
         />
       </View>
-      <TouchableOpacity style={{ flexDirection: "row", justifyContent: "center" }} onPress={handleComplete}>
+      <TouchableOpacity style={{ flexDirection: "row", justifyContent: "center" }} onPress={handleEditProfile}>
         <Text
           style={{
             padding: 10,
@@ -131,6 +145,40 @@ const MYTest = () => {
           </Text>
         </View>
       </View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={editModalVisible}
+        onRequestClose={() => {
+          setEditModalVisible(!editModalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+          <View style={styles.userContainer}>
+        <Image
+          source={require("../../assets/user.png")}
+          style={styles.userImage}
+        />
+        <Text style={styles.menuTextaa}> {Users?.name || "User"}</Text>
+
+      </View>
+            <Text style={{fontFamily:'appfont-light'}}>About you</Text>
+            <TextInput
+              value={Users?.about_me}
+              onChangeText={setabout}
+              style={styles.input}
+            />
+            <Text style={{fontFamily:'appfont-light',marginVertical:5}}>Description</Text>
+            <TextInput
+              value={Users?.about_me}
+              onChangeText={setDescription}
+              style={styles.input}
+            />
+            <Button title="Save" onPress={handleSaveProfile} />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -175,6 +223,36 @@ const styles = StyleSheet.create({
     fontFamily: "appfont-medium",
     color: Colors.BLACK,
     margin: 15,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+    margin:20
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    width:'100%',
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,fontFamily:'appfont-light'
+  },
+  input: {
+    height: 40,
+    borderColor: '#8A62E114',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    width: '100%',backgroundColor:"#8A62E114",fontFamily:'appfont-light',borderRadius:10
   },
 });
 

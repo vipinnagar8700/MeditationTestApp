@@ -66,13 +66,13 @@ const Login = () => {
         <View style={{ alignItems: 'flex-end', justifyContent: 'flex-end', flexDirection: 'row' }}>
           <Text style={{ fontFamily: 'appfont-light', marginTop: 0, color: Colors.WHITE, padding: 0 }}> </Text>
           <Text style={{ fontFamily: 'appfont-light', marginTop: 0, color: Colors.WHITE, padding: 0 }}></Text>
-          <Text style={{ fontFamily: 'appfont-light', marginTop: 0, color: Colors.WHITE, padding: 0 }}>Forgot Password </Text>
+          <Text style={{ fontFamily: 'appfont-light', marginTop: 0, color: Colors.WHITE, padding: 0 ,fontSize:11}}>Forgot Password </Text>
         </View>
         <TouchableOpacity style={styles.button} onPress={HandleHome}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={Registeration}>
-          <Text style={{ fontFamily: 'appfont-light', marginTop: 10, color: Colors.WHITE }}>Registeration</Text>
+          <Text style={{ fontFamily: 'appfont-light', marginTop: 10, color: Colors.WHITE ,fontSize:11 }}>Registeration</Text>
         </TouchableOpacity>
         <Text style={{ fontFamily: 'appfont-light', marginTop: 15, textAlign: 'center', color: Colors.WHITE }}>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</Text>
       </View>

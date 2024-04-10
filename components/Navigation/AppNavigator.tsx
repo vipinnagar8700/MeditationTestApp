@@ -21,7 +21,6 @@ import { useNavigation } from '@react-navigation/native';
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
-  const [initialRouteName, setInitialRouteName] = useState('Login');
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -32,11 +31,9 @@ const AppNavigator = () => {
         console.log(token,"token")
         if (token && token) {
           // Token exists, navigate to Home screen
-          setInitialRouteName('Home');
           navigation.navigate('Home');
         } else {
           // Token does not exist, navigate to Login screen
-          setInitialRouteName('Login');
           navigation.navigate('Login');
         }
       } catch (error) {
@@ -45,10 +42,10 @@ const AppNavigator = () => {
     };
 
     checkToken();
-  }, []);
+  }, [navigation]);
 
   return (
-    <Stack.Navigator  initialRouteName={initialRouteName}> 
+    <Stack.Navigator  > 
    
       <Stack.Screen
         name="Registeration"

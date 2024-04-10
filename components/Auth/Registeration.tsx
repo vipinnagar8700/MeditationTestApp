@@ -63,7 +63,7 @@ const Registeration = () => {
           <Text style={styles.buttonText}>Registeration</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleLogin}>
-        <Text style={{fontFamily:'appfont-light',marginTop:10,color:Colors.WHITE}}>Login </Text>
+        <Text style={{fontFamily:'appfont-light',marginTop:5,color:Colors.WHITE,fontSize:11}}>Login </Text>
         </TouchableOpacity>
         <Text style={{fontFamily:'appfont-light',marginTop:15,textAlign:'center',color:Colors.WHITE}}>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</Text>
       </View>

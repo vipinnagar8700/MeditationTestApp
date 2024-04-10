@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../../Helper/Colors';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { GetAllTopicsTests } from '../Api/Api';
 
-const DepressionTestScreen = () => {
+const DepressionTestScreen = ({ route }) => {
+  const { testData } = route.params;
+  // Use testData in your component
 
   const navigation = useNavigation(); // Get navigation object
 
@@ -14,33 +18,62 @@ const DepressionTestScreen = () => {
     navigation.navigate('Menu'); // Navigate to the Login screen
   };
   const handleGoBack = () => {
-      navigation.goBack();
+    navigation.goBack();
+  };
+  const handleStarttest = (userData) => {
+    navigation.navigate('QuestionDepression', { userData: userData });
+  };
+
+  const [userData, setUserData] = useState(null);
+  useEffect(() => {
+    const fetchToken = async () => {
+      try {
+        const storedToken = await AsyncStorage.getItem('token');
+        if (storedToken !== null) {
+          console.log(storedToken, "storedToken")
+          fetchUserData(storedToken,testData);
+        }
+      } catch (error) {
+        console.error('Error retrieving token:', error);
+      }
     };
-    const handleStarttest = () => {
-      navigation.navigate('QuestionDepression');
-    };
+
+    fetchToken();
+  }, [testData]);
+
+  const fetchUserData = async (token, testData) => {
+    try {
+      console.log(token, testData,"token, testData")
+      const userDataResponse = await GetAllTopicsTests(token, testData);
+      setUserData(userDataResponse?.data);
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  };
+  console.log(userData, "TopicaTests1111")
+
   return (
     <View style={styles.container}>
-          <View style={styles.imageContainer}>
-            <TouchableOpacity style={styles.menuIconContainer} onPress={handleMenu}>
-              <Ionicons name="menu" size={24} color="white" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.menuIconContainera} onPress={handleGoBack}>
-              <AntDesign name="arrowleft" size={24} color="black" />
-            </TouchableOpacity>
-            <View style={{justifyContent:'center',alignItems:'center'}}>
-            <Image source={require('../../assets/user1.png')} style={{
-              alignItems: 'center', width: 120,
-              resizeMode: 'contain', // Adjust image size to fit container
-            }} />
-             <TouchableOpacity style={styles.buttonContainera}>
-              <Text style={styles.buttonTexta}>Depression test</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer} onPress={handleStarttest}>
-              <Text style={styles.buttonText}>Start test</Text>
-            </TouchableOpacity>
-            </View>
-          </View>
+      <View style={styles.imageContainer}>
+        <TouchableOpacity style={styles.menuIconContainer} onPress={handleMenu}>
+          <Ionicons name="menu" size={24} color="white" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuIconContainera} onPress={handleGoBack}>
+          <AntDesign name="arrowleft" size={24} color="black" />
+        </TouchableOpacity>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Image source={require('../../assets/user1.png')} style={{
+            alignItems: 'center', width: 120,
+            resizeMode: 'contain', // Adjust image size to fit container
+          }} />
+          <TouchableOpacity style={styles.buttonContainera}>
+            <Text style={styles.buttonTexta}>{testData?.title} Test</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonContainer} onPress={() => handleStarttest(userData)}>
+            <Text style={styles.buttonText}>Start test</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
       <View style={{ margin: 20, backgroundColor: Colors.SECONDARY, flexDirection: 'row', justifyContent: 'space-between', padding: 20, position: 'absolute', top: 250, borderRadius: 10 }}>
         <Text style={{ fontFamily: 'appfont-light', color: Colors.WHITE }}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo nulla assumenda ipsum sunt quidem veniam possimus quas doloremque quod ducimus provident tempore fuga quis iure et quae sint, laborum praesentium?

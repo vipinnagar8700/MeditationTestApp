@@ -1,36 +1,62 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import {
   View,
   Text,
-  FlatList,
   StyleSheet,
   Image,
   Dimensions,
   TouchableOpacity,
-  ScrollView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../../Helper/Colors";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { GetReslut } from "../Api/Api";
 
-const ResultScreen = () => {
+const ResultScreen = ({route}) => {
  
-
-  
+  const { userData } = route.params;
+  const [AB,setAB]=useState(null)
   const navigation = useNavigation(); // Get navigation object
-
+  const [userDataa, setUserDataa] = useState(null);
   // Function to handle login navigation
   const handleMenu = () => {
     navigation.navigate('Menu'); // Navigate to the Login screen
   };
+
   const handleGoBack = () => {
       navigation.goBack();
+    };
+
+    useEffect(() => {
+      const fetchToken = async () => {
+        try {
+          const storedToken = await AsyncStorage.getItem('token');
+          if (storedToken !== null) {
+           fetchUserData(storedToken,AB); 
+           setAB(userData)
+          }
+        } catch (error) {
+          console.error('Error retrieving token:', error);
+        }
+      };
+      fetchToken();
+    }, [userData,AB]);
+console.log(AB,"AB")
+    const fetchUserData = async (token,AB) => {
+      try {
+        console.log(token,AB,"token,userData")
+        const userDataResponse = await GetReslut(token,AB);
+        console.log(userDataResponse,"mkdhwbhs")
+        setUserDataa(userDataResponse);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
     };
   return (
     <>
       <View style={styles.container}>
-       
             <View style={styles.imageContainer}>
               <TouchableOpacity style={styles.menuIconContainer} onPress={handleMenu}>
                 <Ionicons name="menu" size={24} color="white" />
@@ -54,15 +80,17 @@ const ResultScreen = () => {
               <TouchableOpacity style={styles.buttonContainera}>
                 <Text style={styles.buttonTexta}>Your results</Text>
               </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContaineraa}>
+                <Text style={styles.buttonTextaa}>Correct  {userDataa?.correct_count}, Incorrect {userDataa?.incorrect_count}</Text>
+              </TouchableOpacity>
             </View>
-        
         <View
           style={{
             margin: 20,
             backgroundColor: Colors.BUTTON,
             flexDirection: "row",
             justifyContent: "space-between",
-            padding: 20,
+            padding: 15,
             position: "absolute",
             top: 180,
             borderRadius: 10,width:'88%'
@@ -148,6 +176,12 @@ const styles = StyleSheet.create({
     right: 0,
     alignItems: "center",
   },
+  buttonContaineraa: {
+    top: 124,
+    left: 0,
+    right: 0,
+    alignItems: "center",
+  },
   card: {
     marginHorizontal: 20,
     marginVertical: 5,
@@ -174,6 +208,12 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   buttonTexta: {
+    fontFamily: "appfont-light",
+    fontSize: 16,
+    color: "white",
+    padding: 10,
+  },
+  buttonTextaa: {
     fontFamily: "appfont-light",
     fontSize: 16,
     color: "white",
