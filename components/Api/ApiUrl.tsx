@@ -12,5 +12,9 @@ export const apiUrlGetResult = `${baseUrl}/api/user/tests`;
 export const apiUrlGetMeditation = `${baseUrl}/api/meditation/list`;
 export const apiUrlGetMeditationPopular = `${baseUrl}/api/meditation/list/popular`;
 export const apiUrlGetMeditationSingle = `${baseUrl}/api/meditation/single`;
+export const apiUrlGetFeedback = `${baseUrl}/api/feedback`;
+export const apiUrlAddFeedback = `${baseUrl}/api/feedback`;
 // Image Url
 export const apiUrlImage = `${baseUrl}/admin/meditation/images`;
+export const apiUrlUserImage = `${baseUrl}/admin/images`;
+export const apiUrlTopicImage = `${baseUrl}/admin/topic/images`;

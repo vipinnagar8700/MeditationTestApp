@@ -6,8 +6,10 @@ import { useNavigation } from '@react-navigation/native';
 import Colors from '../../Helper/Colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { UserDetailsApi } from '../Api/Api';
+import { apiUrlUserImage } from '../Api/ApiUrl';
 
 const MenuScreen = () => {
+
   const navigation = useNavigation();
   const [userData, setUserData] = useState(null);
   const menuItems = [
@@ -62,15 +64,27 @@ const MenuScreen = () => {
       console.error('Error fetching user data:', error);
     }
   };
-console.log(userData,"userData")
 
+
+
+  const Setting =()=>{
+    navigation.navigate('MYTest')
+  }
   return (
     <View style={styles.container}>
-      <View style={styles.userContainer}>
-        <Image source={require('../../assets/user.png')} style={styles.userImage} />
+      <TouchableOpacity style={styles.userContainer} onPress={Setting}>
+      {
+          userData?.image ? (
+            <Image source={{uri:`${apiUrlUserImage}/${userData?.image}`}} style={styles.userImage} />
+          ):(
+            <Image source={require('../../assets/user.png')} style={styles.userImage} />
+
+          )
+        }
+     
         <Text style={styles.menuTexta}>{userData?.name || 'User'} </Text>
         <Text style={styles.menuTextaa}>{userData?.email || 'User@gmail.com'}</Text>
-      </View>
+      </TouchableOpacity>
       <FlatList 
         data={menuItems}
         keyExtractor={(item) => item.id}

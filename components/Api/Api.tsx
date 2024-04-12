@@ -1,4 +1,4 @@
-import {  apiUrlAddTests, apiUrlGetMeditation, apiUrlGetMeditationPopular, apiUrlGetMeditationSingle, apiUrlGetResult, apiUrlLogin, apiUrlMe, apiUrlRegister, apiUrlTopic, apiUrlTopicTests,} from "./ApiUrl";
+import {  apiUrlAddFeedback, apiUrlAddTests, apiUrlGetFeedback, apiUrlGetMeditation, apiUrlGetMeditationPopular, apiUrlGetMeditationSingle, apiUrlGetResult, apiUrlLogin, apiUrlMe, apiUrlRegister, apiUrlTopic, apiUrlTopicTests,} from "./ApiUrl";
 
 // Login Api
 export const LoginApi = (email, password) => {
@@ -201,6 +201,46 @@ const requestOptions = {
 };
 
 return fetch(`${apiUrlGetMeditationSingle}/${id}`, requestOptions)
+  .then((response) => response.json())
+  .then((result) => {return result})
+  .catch((error) => {throw error});
+}
+// Get Feedback
+export const GetFeedback =(token)=>{
+  const myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${token}`);
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+
+return fetch(`${apiUrlGetFeedback}`, requestOptions)
+  .then((response) => response.json())
+  .then((result) => {return result})
+  .catch((error) => {throw error});
+}
+
+
+
+// Get Feedback
+export const AddFeedback =(token,emogiid)=>{
+  const myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${token}`);
+
+
+const formdata = new FormData();
+formdata.append("emoji", emogiid);
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: formdata,
+  redirect: "follow"
+};
+
+return fetch(`${apiUrlAddFeedback}`, requestOptions)
   .then((response) => response.json())
   .then((result) => {return result})
   .catch((error) => {throw error});

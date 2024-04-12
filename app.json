@@ -22,7 +22,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.vipinnagar5206.education"
+      "package": "com.vipinnagar5206.education",
+      "versionCode":1
     },
     "web": {
       "favicon": "./assets/favicon.png"

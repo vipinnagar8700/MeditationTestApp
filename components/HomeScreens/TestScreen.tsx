@@ -6,6 +6,7 @@ import { Octicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { GetAllTopics } from '../Api/Api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { apiUrlTopicImage } from '../Api/ApiUrl';
 
 const TestScreen = () => {
   const navigation = useNavigation(); // Get navigation object
@@ -94,12 +95,13 @@ const TestScreen = () => {
         <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
           {
             userData && userData?.map((data, index) => {
+              console.log(`${apiUrlTopicImage}/${data?.image}`)
               return (
                 <TouchableOpacity style={{ padding: 10 }} onPress={() => handleSingleTests(data)} key={index}>
                   <View style={{
                     backgroundColor: "#DCDBDB", padding: 20, borderRadius: 10, flexDirection: 'row', alignItems: 'center', elevation: 10,
                   }}>
-                    <Image source={require('../../assets/user.png')} />
+                    <Image source={{uri:`${apiUrlTopicImage}/${data?.image}`}} style={{width:60 ,height:60,borderRadius:10}} />
                     <Text style={{ fontFamily: 'appfont-medium', marginLeft: 20, color: Colors.BLACK }}>{data?.title} Test</Text>
                   </View>
                 </TouchableOpacity>

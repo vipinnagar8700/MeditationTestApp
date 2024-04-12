@@ -37,6 +37,7 @@ const AppNavigator = () => {
       } catch (error) {
         console.error('Error checking token:', error);
       }
+      navigation.navigate('Login');
     };
 
     checkToken();
